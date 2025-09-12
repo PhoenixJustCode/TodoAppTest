@@ -1,0 +1,293 @@
+/* ================================
+   🌗 Переменные тем
+================================ */
+:root {
+  /* Светлая тема по умолчанию */
+  --bg-color: #f5f7f9;
+  --text-color: #333;
+  --card-bg: #fff;
+  --border-color: #ddd;
+  --primary-color: #4caf50;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #adadad;
+  --card-bg: #1e1e1e;
+  --border-color: #333;
+  --primary-color: #0f4d12;
+}
+
+/* ================================
+     🌐 Базовые стили
+  ================================ */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ================================
+     🔝 Шапка
+  ================================ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* ================================
+     📦 Контейнер
+  ================================ */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  padding: 0 10px;
+}
+
+/* ================================
+     📑 Секции
+  ================================ */
+.form-section,
+.list-section {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+.form-title,
+.list-title {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ================================
+     📝 Форма
+  ================================ */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+/* ================================
+     🔘 Кнопки
+  ================================ */
+.task-form .btn {
+  width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.btn-submit {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+.btn-toggle {
+  background: var(--card-bg);
+  font-size: 18px;
+  border: 1px solid var(--border-color);
+  width: auto;
+  padding: 0.4rem 0.8rem;
+}
+
+.btn.active-tab {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* ================================
+     📋 Список задач
+  ================================ */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100px;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr) 140px auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: background 0.3s, border 0.3s;
+}
+
+
+
+/* 📌 Приоритет */
+.task strong {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* 📝 Текст задачи */
+.task span {
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.task.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* 📅 Дата */
+.task small {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* ================================
+     🎛 Действия с задачей
+  ================================ */
+
+/* Контейнер для кнопок */
+.task-actions {
+  display: flex;
+  gap: 8px; /* расстояние между кнопками */
+  justify-content: flex-end;
+}
+
+/* Кнопки внутри задач */
+.task-actions .btn {
+  width: auto !important;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  width: auto;
+}
+
+.task-actions .task-btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Время у задачи */
+.task small {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-left: 6px; 
+}
+
+.task {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+}
+  
+.task small:empty {
+  display: none; 
+}
+/* ================================
+     📑 Табуляция
+  ================================ */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* ================================
+     📱 Адаптивность
+  ================================ */
+@media (max-width: 768px) {
+  .task {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .task strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .task-form {
+    gap: 10px;
+  }
+}
+
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .filters button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .filters button:hover {
+    background: #ddd;
+  }
+  

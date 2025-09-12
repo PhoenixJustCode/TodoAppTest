@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>Todo List</title>
+  <!-- Твой JS -->
+  <script src="script.js"></script>
+  <script type="module">
+    import * as TaskBackend from './wailsjs/go/main/TaskBackend.js';
+    window.taskBackend = TaskBackend; // теперь window.taskBackend.GetAllTasks() работает
+  </script>
+
+</head>
+<body>
+  <header class="header">
+    <h1 class="app-title">Todo List</h1>
+    <button id="themeToggle" class="btn btn-toggle">🌙</button>
+  </header>
+
+  <main class="container">
+    <!-- Форма добавления задачи -->
+    <section class="form-section">
+      <form id="taskForm" class="task-form">
+        <h2 class="form-title">Add New Task</h2>
+
+        <label for="taskInput" class="form-label">Task</label>
+        <input id="taskInput" class="form-input" type="text" name="task" required />
+
+        <label for="taskDate" class="form-label">Date & Time</label>
+        <input id="taskDate" class="form-input" type="datetime-local" name="date" />
+
+        <label for="prioritySelect" class="form-label">Priority</label>
+        <select id="prioritySelect" name="priority" class="form-select">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <button type="submit" class="btn btn-submit">Add Task</button>
+      </form>
+
+      <!-- Фильтры -->
+      <div class="filters">
+        <div class="filter-group">
+          <label for="statusFilter">Status:</label>
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="priorityFilter">Priority:</label>
+          <select id="priorityFilter">
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="dateFilter">Date:</label>
+          <select id="dateFilter">
+            <option value="all">All</option>
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+            <option value="overdue">Overdue</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortSelect">Sort By:</label>
+          <select id="sortSelect">
+            <option value="date">Date</option>
+            <option value="priority">Priority</option>
+          </select>
+
+          <select id="sortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Списки задач -->
+    <section class="list-section">
+      <h2 class="list-title">Active Tasks</h2>
+      <div id="taskList" class="task-list"></div>
+    </section>
+
+    <section class="list-section">
+      <h2 class="list-title">Completed Tasks</h2>
+      <div id="completedList" class="task-list"></div>
+    </section>
+  </main>
+
+
+
+
+</body>
+</html>
