@@ -90,7 +90,5 @@ Checklist для поэтапного выполнения задания:
 На выполнение задания даётся 4 дня.
 
 Результат работы (GIT) прикреплять в google forms:
-https://forms.gle/KM5cmSNWQxEPL8zz9
-
 
 
