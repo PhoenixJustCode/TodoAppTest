@@ -44,6 +44,8 @@ func main() {
 	http.HandleFunc("/tasks", todo.TasksHandler)
 	http.HandleFunc("/tasks/add", todo.AddTaskHandler)
 	http.HandleFunc("/tasks/delete", todo.DeleteTaskHandler)
+	http.HandleFunc("/tasks/update", todo.UpdateTaskHandler)
+	http.HandleFunc("/tasks/filter", todo.FilterTasksHandler)
 
 	fmt.Println("Server running at :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
