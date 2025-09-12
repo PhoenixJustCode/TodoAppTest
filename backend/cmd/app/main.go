@@ -5,11 +5,11 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"TodoApp/backend/internal/delivery/https"
-	"TodoApp/backend/internal/repository/postgres"
+	"TodoApp/backend/pkg/delivery/https"
+	"TodoApp/backend/pkg/repository/postgres"
 	_ "github.com/lib/pq"
-	"TodoApp/backend/internal/storage"
-	"TodoApp/backend/internal/usecase"
+	"TodoApp/backend/pkg/storage"
+	"TodoApp/backend/pkg/usecase"
 
 	"github.com/joho/godotenv"
 )
