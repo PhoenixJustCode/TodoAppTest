@@ -1,0 +1,13 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "todoapp",
+  "outputfilename": "todoapp",
+  "frontend:dir": "../frontend", 
+  "frontend:install": "", 
+  "frontend:build": "", 
+  "frontend:bridge": "wailsjs",
+  "author": {
+    "name": "Alexander Demchenko",
+    "email": "alexandersd3306@gmail.com"
+  }
+}
