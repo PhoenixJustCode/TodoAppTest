@@ -20,6 +20,10 @@ func (s *Service) GetAllTasks() ([]Task, error) {
 	return s.Store.GetAll()
 }
 
-func (s *Service) FilterTasks(tasks []Task, day int16, priority, status string) []Task {
-	return s.Store.FilterTasks(tasks, day, priority, status)
+func (s *Service) UpdateStatus(id int64, status bool) error {
+    return s.Store.UpdateStatus(id, status)
+}
+
+func (s *Service) FilterTasks(tasks []Task, priority, status, dateFilter string) []Task {
+    return s.Store.FilterTasks(tasks, priority, status, dateFilter)
 }
