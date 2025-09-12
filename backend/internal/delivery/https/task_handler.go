@@ -1,11 +1,13 @@
-package todo
+package https
 
 import (
+	"TodoApp/backend/internal/domain"
+	. "TodoApp/backend/internal/usecase"
 	"encoding/json"
 	"net/http"
 	"sort"
-	"time"
 	"strings"
+	"time"
 )
 
 
@@ -35,7 +37,7 @@ func AddTaskHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var t Task
+	var t domain.Task
 	if err := json.NewDecoder(r.Body).Decode(&t); err != nil {
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
@@ -125,7 +127,7 @@ func FilterTasksHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    var filtered []Task
+    var filtered []domain.Task
     now := time.Now()
 
     for _, t := range tasks {

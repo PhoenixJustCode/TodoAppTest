@@ -1,4 +1,4 @@
-package todo
+package postgres
 
 import (
 	"database/sql"
@@ -7,24 +7,26 @@ import (
 	"time"
 	"fmt"
 
+    . "TodoApp/backend/internal/domain"
+
 )
 
-type PostgresStore struct {
+type PostgresTaskStore  struct {
 	DB *sql.DB
 }
 
-func (p *PostgresStore) Add(task Task) error {
+func (p *PostgresTaskStore ) Add(task Task) error {
 	_, err := p.DB.Exec("INSERT INTO tasks(task, priority, status, due_date) VALUES($1,$2,$3,$4)",
 		task.Task, task.Priority, task.Status, task.DueDate)
 	return err
 }
 
-func (p *PostgresStore) Delete(id int64) error {
+func (p *PostgresTaskStore ) Delete(id int64) error {
 	_, err := p.DB.Exec("DELETE FROM tasks WHERE id=$1", id)
 	return err
 }
 
-func (p *PostgresStore) GetAll() ([]Task, error) {
+func (p *PostgresTaskStore ) GetAll() ([]Task, error) {
 	rows, err := p.DB.Query("SELECT id, task, priority, status, due_date FROM tasks")
 	if err != nil {
 		return nil, err
@@ -45,13 +47,13 @@ func (p *PostgresStore) GetAll() ([]Task, error) {
 
 
 // в postgres_store.go
-func (p *PostgresStore) UpdateStatus(id int64, status bool) error {
+func (p *PostgresTaskStore ) UpdateStatus(id int64, status bool) error {
     _, err := p.DB.Exec("UPDATE tasks SET status = $1 WHERE id = $2", status, id)
     return err
 }
 
 
-func (p *PostgresStore) FilterTasks(tasks []Task, priority, statusStr, dateFilter string) []Task {
+func (p *PostgresTaskStore ) FilterTasks(tasks []Task, priority, statusStr, dateFilter string) []Task {
 	res := []Task{}
 
     var statusFilter *bool

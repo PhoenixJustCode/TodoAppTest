@@ -5,9 +5,12 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"TodoApp/backend/internal/storage"
-	"TodoApp/backend/internal/todo"
+	"TodoApp/backend/internal/delivery/https"
+	"TodoApp/backend/internal/repository/postgres"
 	_ "github.com/lib/pq"
+	"TodoApp/backend/internal/storage"
+	"TodoApp/backend/internal/usecase"
+
 	"github.com/joho/godotenv"
 )
 
@@ -37,15 +40,15 @@ func main() {
 	storage.InitDB(db)
 
 	// Инициализация сервиса и обработчиков
-	store := &todo.PostgresStore{DB: db}
-	todo.Svc = todo.NewService(store)
+	store := &postgres.PostgresTaskStore{DB: db}
+	https.Svc = usecase.NewService(store)
 
 	http.Handle("/", http.FileServer(http.Dir("./frontend")))
-	http.HandleFunc("/tasks", todo.TasksHandler)
-	http.HandleFunc("/tasks/add", todo.AddTaskHandler)
-	http.HandleFunc("/tasks/delete", todo.DeleteTaskHandler)
-	http.HandleFunc("/tasks/update", todo.UpdateTaskHandler)
-	http.HandleFunc("/tasks/filter", todo.FilterTasksHandler)
+	http.HandleFunc("/tasks", https.TasksHandler)
+	http.HandleFunc("/tasks/add", https.AddTaskHandler)
+	http.HandleFunc("/tasks/delete", https.DeleteTaskHandler)
+	http.HandleFunc("/tasks/update", https.UpdateTaskHandler)
+	http.HandleFunc("/tasks/filter", https.FilterTasksHandler)
 
 	fmt.Println("Server running at :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))

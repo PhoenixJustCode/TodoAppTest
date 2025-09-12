@@ -1,4 +1,4 @@
-package todo
+package domain
 
 type TaskStore interface {
     Add(task Task) error
