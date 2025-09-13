@@ -84,13 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let dateHTML = "";
       if (t.due_date && t.due_date !== "0001-01-01T00:00:00Z") {
-        const d = new Date(t.due_date);
-        if (!isNaN(d.getTime())) {
-          dateHTML = `<small>${d.toLocaleDateString()} ${d.toLocaleTimeString(
-            [],
-            { hour: "2-digit", minute: "2-digit" }
-          )}</small>`;
-        }
+        const dateStr = t.due_date.replace("Z", ""); // убираем Z
+        const [datePart, timePart] = dateStr.split("T");
+        const [year, month, day] = datePart.split("-");
+        const [hour, minute] = timePart.split(":");
+      
+        dateHTML = `<small>${day}.${month}.${year} ${hour}:${minute}</small>`;
       }
 
       div.innerHTML = `

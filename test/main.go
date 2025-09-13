@@ -34,7 +34,7 @@ func (t *TaskBackend) GetAllTasks() ([]domain.Task, error) {
     if err != nil {
         log.Fatal("❌ Error fetching tasks:", err)
     } else {
-        log.Info("📦 Got %d tasks from DB\n", len(tasks))
+        log.Infof("📦 Got %d tasks from DB", len(tasks))
     }
 
     return tasks, err
