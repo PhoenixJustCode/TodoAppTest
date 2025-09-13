@@ -2,10 +2,9 @@ package storage
 
 import (
     "database/sql"
-    "io/ioutil"
     log "github.com/sirupsen/logrus"
-    "path/filepath"
     _ "github.com/lib/pq"
+    _ "embed"
 
 )
 
@@ -21,7 +20,8 @@ func NewDB(dataSource string) (*sql.DB, error) {
 	return db, nil
 }
 
-
+//go:embed schema/tasks.sql
+var tasksSQL string
 
 func InitDB(db *sql.DB) {
     var exists bool
@@ -34,15 +34,10 @@ func InitDB(db *sql.DB) {
     }
 
     if !exists {
-        path := filepath.Join("schema", "tasks.sql")
-        sqlBytes, err := ioutil.ReadFile(path)
-        if err != nil {
-            log.Fatal("Failed to read schema file:", err)
-        }
-
-        _, err = db.Exec(string(sqlBytes))
+        _, err = db.Exec(tasksSQL)
         if err != nil {
             log.Fatal("Failed to execute schema SQL:", err)
         }
+        log.Println("✅ tasks table created")
     }
 }
