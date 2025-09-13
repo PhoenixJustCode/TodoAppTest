@@ -3,7 +3,7 @@ package storage
 import (
     "database/sql"
     "io/ioutil"
-    "log"
+    log "github.com/sirupsen/logrus"
     "path/filepath"
     _ "github.com/lib/pq"
 

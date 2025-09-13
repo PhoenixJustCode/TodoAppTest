@@ -65,7 +65,7 @@ func (p *PostgresTaskStore) FilterTasks(tasks []Task, priority, statusStr, dateF
 			continue
 		}
 
-		// 🔹 Фильтр по статусу
+		// Фильтр по статусу
 		if statusStr != "" && statusStr != "all" {
 			if statusStr == "active" && t.Status {
 				continue
@@ -75,7 +75,7 @@ func (p *PostgresTaskStore) FilterTasks(tasks []Task, priority, statusStr, dateF
 			}
 		}
 
-		// 🔹 Фильтр по дате
+		// Фильтр по дате
 		if t.DueDate != "" {
 			due, err := time.Parse(time.RFC3339, t.DueDate)
 			if err == nil {
@@ -104,7 +104,6 @@ func (p *PostgresTaskStore) FilterTasks(tasks []Task, priority, statusStr, dateF
 	return res
 }
 
-// 🔹 Можно добавить сортировку отдельно, если нужно
 func (p *PostgresTaskStore) SortTasks(tasks []Task, sortBy, sortOrder string) []Task {
 	if sortBy == "" {
 		return tasks

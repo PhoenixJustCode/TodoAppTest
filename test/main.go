@@ -3,7 +3,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"log"
+	log "github.com/sirupsen/logrus"
 	"os"
 	"TodoApp/backend/pkg/repository/postgres"
 	"TodoApp/backend/pkg/storage"
@@ -34,7 +34,7 @@ func (t *TaskBackend) GetAllTasks() ([]domain.Task, error) {
     if err != nil {
         log.Fatal("❌ Error fetching tasks:", err)
     } else {
-        fmt.Printf("📦 Got %d tasks from DB\n", len(tasks))
+        log.Info("📦 Got %d tasks from DB\n", len(tasks))
     }
 
     return tasks, err
@@ -59,7 +59,7 @@ func (t *TaskBackend) UpdateStatus(id int64, status bool) error {
 func main() {
 	// Загружаем .env
 	if err := godotenv.Load(); err != nil {
-		log.Println("Warning: .env file not found, using system env")
+		log.Warn(".env file not found, using system env")
 	}
 
 	dataSource := fmt.Sprintf(

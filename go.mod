@@ -7,6 +7,8 @@ require (
 	github.com/wailsapp/wails/v2 v2.10.2
 )
 
+require github.com/sirupsen/logrus v1.9.3 // indirect
+
 require (
 	github.com/bep/debounce v1.2.1 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
