@@ -94,7 +94,9 @@
 ---
 
 ### Демонстрация
+
 ![Демо](docs/video/video.mp4)
+
 ![Код+БД+Демо](docs/video/video2.mp4)
 
 
