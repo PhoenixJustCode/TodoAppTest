@@ -81,6 +81,8 @@ func main() {
 	svc := usecase.NewService(store)
 	taskBackend := NewTaskBackend(svc)
 
+	storage.InitDB(db)
+
 	err = wails.Run(&options.App{
 		Title:  "TodoApp",
 		Width:  1200,
