@@ -113,11 +113,22 @@
 ```bash
 # Клонирование репозитория
 git clone https://github.com/PhoenixJustCode/TodoAppTest.git
-cd TodoAppTest/test ```
+cd TodoAppTest/test
+```
+#⚙️ Настройка окружения
 
+В папке test создайте файл .env и укажите параметры подключения к базе данных:
+```bash
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASS=postgres
+DB_NAME=todoapp_db
+```
 ## Установка зависимостей
+```bash
 wails doctor
 wails build   # сборка
 wails dev     # запуск в dev режиме
-
+```
 ---
